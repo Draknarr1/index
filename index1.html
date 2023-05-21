@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=</device-width>, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+
+    /* Common styles NE PAS MODIFIER */
+    body, html{
+      padding:0;
+      margin:0;
+      width:100vw;
+      min-height:100vh;
+    }
+    header, article, nav, aside, footer{
+      border-radius:5px;
+      padding:5px;
+    }
+
+    /* Votre code CSS pour design par Grid ci-après */
+    body{
+     box-sizing: border-box;
+      display: grid;
+      
+      grid-gap:10px ;
+      grid-template-areas:
+    "header"
+    "article"
+    "footer";
+    }
+
+    header{
+      grid-area: header;
+      font-size: 20px;
+      min-height: 10vh;
+      
+      
+    }
+    article{
+      grid-area: article;
+      min-height: 80vh;
+    
+    }
+  
+    footer{
+      grid-area: footer;
+      font-size: 20px;
+      min-height: 5vh;
+    
+    }
+
+    @media screen and (max-width: 640px) {
+
+      body{
+    display: flex;
+    flex-direction: column;
+  
+  }
+  header,{
+    min-height: 10vh;
+  }
+  footer{
+    min-height: 5vh;
+  }
+  article{
+    min-height: 80vh;
+  }
+      
+    }
+
+
+    body{
+        font-size: 20px;
+        font-family: Verdana ;
+        background-image: url('168614.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+        height: 100%;
+    }
+    h1{
+        font-size: 50px;
+    }
+
+    #section1{
+        border-radius: 15px;
+        margin: 20px 0px;
+        padding: 10px;
+    }
+    #section2{
+        margin: 20px 0px;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    #section3{
+        border-radius: 15px;
+        margin: 20px 0px;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    #section4{
+        border-radius: 15px;
+        margin: 20px 0px;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    #section1 input{
+        width: 300px;
+        height: 20px;
+        margin: 10px 0px;
+    }
+
+  
+    #section3 input{
+        margin: 10px 0px;
+    }
+    #section1 label{
+        display: inline-block;
+        width: 330px;
+        padding: 5px 0px 15px 10px;
+    }
+
+
+
+    #section3 select{
+      height: 28px;
+        font-size: 15px;
+        margin: 15px 0px ;
+        font-size: 17px;
+    }
+    #section2 select{
+      height: 28px;
+        font-size: 15px;
+        margin: 15px 0px ;
+        font-size: 17px;
+    }
+    
+    #section1:hover, #section2:hover, #section3:hover, #section4:hover, #section5:hover{
+        box-shadow: 0px 0px 5px #444;
+    }
+    #in{
+        width: 100px;
+        height: 27px;
+        padding: 5px;
+        font-size: 15px;
+        margin: 10px 0px;
+    }
+    #section4 select{
+        height: 28px;
+        font-size: 15px;
+        margin: 15px 0px ;
+        font-size: 17px;
+    }
+
+    footer {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    font-size: 14px;
+    color: #888;
+  }
+
+  </style>
+  <script>
+  let expconduite=[{"id":1,"heure_debut":"06:50","heure_Arriver":"10:30","km":10,"date":"2023-03-27","id_meteo":1,"id_saison":1,"id_vitesse":1},{"id":2,"heure_debut":"07:00","heure_Arriver":"10:00","km":15,"date":"2023-03-26","id_meteo":2,"id_saison":"2","id_vitesse":2},{"id":3,"heure_debut":"08:30","heure_Arriver":"12:00","km":11,"date":"2023-03-28","id_meteo":3,"id_saison":"3","id_vitesse":3}];
+  console.log(expconduite);
+  let expcond=[{"id":1,"heure_debut":"06:50","heure_Arriver":"10:30","km":10,"date":"2023-03-27"}];
+  console.log(expcond);
+  let meteo=[{"id_meteo":1,"meteo":"soleil"},{"id_meteo":2,"meteo":"neige"},{"id_meteo":3,"meteo":"pluie"},{"id_meteo":4,"meteo":"nuageux"}];
+  console.log(meteo);
+  let vitesse=[{"id_vitesse":1,"vitesseConduite":"Elever"},{"id_vitesse":2,"vitesseConduite":"Lente"},{"id_vitesse":3,"vitesseConduite":"Normal"}];
+  console.log(vitesse);
+  let saison=[{"id_saison":"1","saison":"Printemps"},{"id_saison":"2","saison":"Ete"},{"id_saison":3,"saison":"automne"},{"id_saison":4,"saison":"hiver"}];
+  console.log(saison);
+
+
+  function saveExp(){
+    date1=document.getElementById('date').value;
+    heureD=document.getElementById('heure_debut').value;
+    heureA=document.getElementById('heure_arriver').value;
+    kilm=document.getElementById('kilometrage').value;
+    met=document.getElementById('meteo').value;
+    vites=document.getElementById('vitesse').value;
+    sais=document.getElementById('saison').value;
+    console.log(`Date : ${date} , heure de depart ; ${heureD} , heure d'arriver : ${heureA} , kilométrage : ${kilm} , méteo : ${met} , vitesse : ${vites} , Saison : ${sais}`);
+  
+
+  listeExp= new Array();
+
+  listeExpstring=localStorage.getItem('listeExps');
+
+  if(listeExpstring!=null) listeExp=JSON.parse(listeExpstring);
+
+  newIdExp= listeExp.length+ 1;
+  newExp={"IdExp":newIdExp, "Date":date1,"heure_debut":heureD, "heure_arriver":heureA, "kilometrage":kilm, "id_meteo":met, "id_vitesse":vites, "id_saison":sais};
+  console.log(newExp);
+
+  listeExp.push(newExp);
+
+localStorage.setItem('listeExps',JSON.stringify(listeExp));
+
+document.getElementById('Exp').reset();
+  }
+
+</script>
+</head>
+
+<body>
+  <header>
+    <h1>Formulaire</h1>
+  </header>
+  <article>
+    
+    <form method="post" action="traitement.php">
+      <fieldset id="section1">
+        <legend>Expérience de Conduite</legend>
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date"><br>
+
+      <label for="heure_debut">Heure de départ</label>
+      <input type="time" id="heure_debut" name="heure_debut"><br>
+
+      <label for="heure_arriver">Heure d'arriver</label>
+      <input type="time" id="heure_arriver" name="heure_arriver"><br>
+
+      <label for="kilometrage">Distance parcourue :</label>
+      <input type="number" id="kilometrage" name="kilometrage" min="0" step="any" required><br>
+    </fieldset>
+
+    <fieldset id="section2">
+      Meteo<br>
+      <select id="meteo">
+        <option value="">--choix meteo--</option>
+      </select><br><br>
+
+    <script>
+        meteo.forEach(function(item, index) {
+  let loption2 = `<option value="${item.id_meteo}">${item.meteo}</option>`;
+  document.getElementById("meteo").insertAdjacentHTML('beforeend', loption2);
+    
+
+    });
+
+    </script>
+    </fieldset>
+
+    <fieldset id="section3">
+
+      Quelle est la vitesse de conduite ?<br>
+      
+      <select id="vitesse">
+        <option value="">--choix vitesse--</option>
+      </select><br><br>
+      <script>
+        vitesse.forEach(function(item,index){
+          let loption1=`<option value="${item.id_vitesse}">${item.vitesseConduite}
+            </option>`;
+            document.getElementById("vitesse").insertAdjacentHTML('beforeend',loption1);
+        });
+      </script>
+    </fieldset>
+
+    <fieldset id="section4">
+
+      Quelle est la saison actuelle ?<br><br>
+
+      <select id="saison">
+        <option value="">--choix saison--</option>
+      </select><br> <br>
+    
+    <script>
+      saison.forEach(function(item,index){
+        let loption=`<option value="${item.id_saison}">${item.saison}
+          </option>`;
+          document.getElementById("saison").insertAdjacentHTML('beforeend',loption);
+      });
+    </script>
+    </fieldset>
+
+    <button type="button" onclick="saveExp()" id="in">Enregistrer</button>
+    </form>
+  </article>
+  
+  <footer>
+    <p>&copy; 2023 Rofick CHITOU. Tous droits réservés.</p>
+  </footer>
+  
+</body>
+</html>
